@@ -1,12 +1,13 @@
 export const isPosibleUp = (matrix) => {
+  const matrixClone = matrix.slice();
   return Boolean(
-    matrix
+    matrixClone
       .map((arr, l) => {
         return arr
           .map((n, c) => {
             if (l !== 0) {
               const current = n;
-              const nextUp = matrix[l - 1][c];
+              const nextUp = matrixClone[l - 1][c];
               if (nextUp === null && current !== null) return true;
               if (current === nextUp && current !== null) return true;
             }

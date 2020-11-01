@@ -3,9 +3,12 @@ export function Button(props) {
   const style = {
     width: "20px",
     height: "20px",
-    margin: 3,
-    padding: 2,
+    margin: 0,
+    padding: 3,
     textAlign: "center",
+    border: "none",
+    border: "solid 1px #000",
+    backgroundColor: "#fff",
   };
   const matrixClone = matrix.slice().map((arr) => {
     return (

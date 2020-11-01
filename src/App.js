@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   handleRight,
   handleLeft,
@@ -7,31 +7,44 @@ import {
   handleRandomValues,
 } from "./handleMotion";
 import { Button } from "./components/buttons";
+import { GameOver } from "./components/GameOver";
 
 function App() {
   const randomMatrix = handleRandomValues();
   const [matrix, setMatrix] = useState(randomMatrix);
   const [history, setHistory] = useState(matrix);
 
+  const restartGame = (setMatrix, randomMatrix) => {
+    setMatrix(randomMatrix);
+  };
+
+  const innerHtml = (string) => {
+    return <div dangerouslySetInnerHTML={{ __html: string }} />;
+  };
+
   return (
     <React.Fragment>
+      <button onClick={() => restartGame(setMatrix, randomMatrix)}>
+        New Game
+      </button>
+      <GameOver matrix={matrix} />
+      <Button matrix={matrix} />
       <div>
         <button onClick={() => handleUp(matrix, setMatrix, setHistory)}>
-          Top
+          {innerHtml("&UpArrow;")}
         </button>
       </div>
       <div>
         <button onClick={() => handleLeft(matrix, setMatrix, setHistory)}>
-          Left
+          {innerHtml("&LeftArrow;")}
         </button>
         <button onClick={() => handleRight(matrix, setMatrix, setHistory)}>
-          Right
+          {innerHtml("&RightArrow;")}
         </button>
       </div>
       <button onClick={() => handleDown(matrix, setMatrix, setHistory)}>
-        Down
+        {innerHtml("&DownArrow;")}
       </button>
-      <Button matrix={matrix} />
       {console.log(history)}
     </React.Fragment>
   );
