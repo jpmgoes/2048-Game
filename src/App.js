@@ -6,46 +6,77 @@ import {
   handleDown,
   handleRandomValues,
 } from "./handleMotion";
-import { Button } from "./components/buttons";
+import { BigBox } from "./components/BigBox";
 import { GameOver } from "./components/GameOver";
+import { GameTop } from "./components/GameTop";
+import { GameDown } from "./components/GameDown";
+import { Arrows } from "./components/Arrows";
+import "./index.css";
 
 function App() {
+  //^ Handle Matrix
   const randomMatrix = handleRandomValues();
-  const [matrix, setMatrix] = useState(randomMatrix);
-  const [history, setHistory] = useState(matrix);
+  let lastGame = localStorage.getItem("history");
+  let lastGameArr = [];
+  if (lastGame) {
+    lastGame = lastGame.split(",").map((a, i) => {
+      if (i % 4 === 0) lastGameArr.push([]);
+      if (a === "") return null;
+      return Number(a);
+    });
+    let count = 0;
+    for (let arr of lastGameArr)
+      while (arr.length < 4) arr.push(lastGame[count++]);
+  }
+
+  const [matrix, setMatrix] = useState(
+    lastGameArr[0] ? lastGameArr : randomMatrix
+  );
+  //^ Score
+  const [score, setScore] = useState(
+    localStorage.getItem("score") ? Number(localStorage.getItem("score")) : 0
+  );
+  //^ History
+  const [history, setHistory] = useState();
+  localStorage.setItem("score", score);
+  if (history) {
+    localStorage.setItem("history", history);
+  }
+  //^ Commands
+  function up() {
+    handleUp(matrix, setMatrix, setHistory, score, setScore);
+  }
+  function left() {
+    handleLeft(matrix, setMatrix, setHistory, score, setScore);
+  }
+  function down() {
+    handleDown(matrix, setMatrix, setHistory, score, setScore);
+  }
+  function right() {
+    handleRight(matrix, setMatrix, setHistory, score, setScore);
+  }
 
   const restartGame = (setMatrix, randomMatrix) => {
     setMatrix(randomMatrix);
+    setHistory([]);
+    setScore(0);
   };
 
-  const innerHtml = (string) => {
-    return <div dangerouslySetInnerHTML={{ __html: string }} />;
-  };
-
+  //^ Render
   return (
     <React.Fragment>
-      <button onClick={() => restartGame(setMatrix, randomMatrix)}>
-        New Game
-      </button>
-      <GameOver matrix={matrix} />
-      <Button matrix={matrix} />
-      <div>
-        <button onClick={() => handleUp(matrix, setMatrix, setHistory)}>
-          {innerHtml("&UpArrow;")}
-        </button>
+      <div className="bigBoxWithArrows">
+        <GameTop
+          score={score}
+          history={history}
+          setScore={setScore}
+          restartGame={() => restartGame(setMatrix, randomMatrix)}
+        />
+        <GameOver matrix={matrix} />
+        <BigBox matrix={matrix} />
+        <Arrows onUp={up} onLeft={left} onDown={down} onRight={right} />
       </div>
-      <div>
-        <button onClick={() => handleLeft(matrix, setMatrix, setHistory)}>
-          {innerHtml("&LeftArrow;")}
-        </button>
-        <button onClick={() => handleRight(matrix, setMatrix, setHistory)}>
-          {innerHtml("&RightArrow;")}
-        </button>
-      </div>
-      <button onClick={() => handleDown(matrix, setMatrix, setHistory)}>
-        {innerHtml("&DownArrow;")}
-      </button>
-      {console.log(history)}
+      <GameDown />
     </React.Fragment>
   );
 }
