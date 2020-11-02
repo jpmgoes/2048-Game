@@ -43,17 +43,28 @@ function App() {
   }
 
   //^ Commands
+  function changeArrow(className) {
+    const arrow = document.querySelector("." + className);
+    if (arrow) {
+      setTimeout(() => (arrow.style.background = "#9b8e84"), 100);
+      setTimeout(() => (arrow.style.background = "#eee4da"), 400);
+    }
+  }
   function up() {
     handleUp(matrix, setMatrix, setHistory, score, setScore);
+    changeArrow("arrowUP");
   }
   function left() {
     handleLeft(matrix, setMatrix, setHistory, score, setScore);
+    changeArrow("arrowLeft");
   }
   function down() {
     handleDown(matrix, setMatrix, setHistory, score, setScore);
+    changeArrow("arrowDown");
   }
   function right() {
     handleRight(matrix, setMatrix, setHistory, score, setScore);
+    changeArrow("arrowRight");
   }
 
   const restartGame = (setMatrix, randomMatrix) => {
@@ -70,10 +81,10 @@ function App() {
   // }
   // function b(matrix) {
   //   setMatrix([
-  //     [1, 2, 3, 4],
-  //     [5, 6, 7, 8],
-  //     [9, 10, 11, 12],
-  //     [13, 14, 15, 16],
+  //     [2, 4, 8, 16],
+  //     [32, 64, 128, 256],
+  //     [512, 1024, 2, 4],
+  //     [8, 16, 32, 64],
   //   ]);
   // }
   //!
@@ -82,10 +93,6 @@ function App() {
   useKey("KeyA", left);
   useKey("KeyS", down);
   useKey("KeyD", right);
-  useKey("ArrowUp", up);
-  useKey("ArrowRight", right);
-  useKey("ArrowDown", down);
-  useKey("ArrowLeft", left);
 
   //^ Render
   return (
@@ -103,8 +110,8 @@ function App() {
         />
         <Arrows onUp={up} onLeft={left} onDown={down} onRight={right} />
       </div>
-      {/* <button onClick={() => a(matrix)}>win</button>
-      <button onClick={() => b(matrix)}>lose</button> */}
+      {/* <button onClick={() => a(matrix)}>win</button> */}
+      {/* <button onClick={() => b(matrix)}>lose</button> */}
       <GameDown />
     </React.Fragment>
   );

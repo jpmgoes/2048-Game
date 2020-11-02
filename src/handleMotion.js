@@ -4,6 +4,7 @@ export const handleUp = (matrix, setMatrix, setHistory, status, setStatus) => {
   newMatrix = noTopNull(newMatrix);
   let matrixClone = newMatrix.slice();
   newMatrix = newMatrix.map((arr, l) => {
+    // eslint-disable-next-line
     return arr.map((n, c) => {
       if (l !== 3) {
         if (n === matrixClone[l + 1][c] && n !== null) {
@@ -24,8 +25,10 @@ function noTopNull(matrix) {
   const matrixClone = matrix.slice();
   let newMatrix = matrix.slice();
   let t = [];
+  // eslint-disable-next-line
   matrixClone.map((arr, l) => {
     t.push([]);
+    // eslint-disable-next-line
     arr.map((n, c) => {
       t[l].push(newMatrix[c][l]);
     });
@@ -40,8 +43,10 @@ function noTopNull(matrix) {
     }
   }
   const tt = [];
+  // eslint-disable-next-line
   t.map((arr, l) => {
     tt.push([]);
+    // eslint-disable-next-line
     arr.map((n, c) => {
       tt[l].push(t[c][l]);
     });
@@ -164,6 +169,7 @@ export const handleDown = (
   newMatrix = noDownNull(newMatrix);
   let matrixClone = newMatrix.slice();
   newMatrix = newMatrix.map((arr, l) => {
+    // eslint-disable-next-line
     return arr.map((n, c) => {
       if (l !== 0) {
         if (n === matrixClone[l - 1][c] && n !== null) {
@@ -184,8 +190,10 @@ function noDownNull(matrix) {
   const matrixClone = matrix.slice();
   let newMatrix = matrix.slice();
   let t = [];
+  // eslint-disable-next-line
   matrixClone.map((arr, l) => {
     t.push([]);
+    // eslint-disable-next-line
     arr.map((n, c) => {
       t[l].push(newMatrix[c][l]);
     });
@@ -200,8 +208,10 @@ function noDownNull(matrix) {
     }
   }
   const tt = [];
+  // eslint-disable-next-line
   t.map((arr, l) => {
     tt.push([]);
+    // eslint-disable-next-line
     arr.map((n, c) => {
       tt[l].push(t[c][l]);
     });

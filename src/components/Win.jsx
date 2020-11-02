@@ -9,6 +9,7 @@ import {
 export function Win(props) {
   const { matrix, restartGame } = props;
   const win = document.querySelector(".winInterface");
+  const youWonButton = document.querySelector(".youWonButton");
 
   const isGameOver = (matrix) => {
     if (
@@ -23,7 +24,9 @@ export function Win(props) {
     if (isWin(matrix) || isGameOver(matrix)) {
       win.style.opacity = 0.9;
       win.style.zIndex = 10;
+      youWonButton.style.display = "grid";
     } else {
+      youWonButton.style.display = "none";
       win.style.opacity = 0;
       win.style.zIndex = -10;
     }
