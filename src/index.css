@@ -201,6 +201,10 @@ h1 {
   grid-area: t;
 }
 .youWonButton {
+  display: grid;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
   grid-area: b;
   height: 50px;
   color: #faf8ef;
