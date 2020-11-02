@@ -1,7 +1,65 @@
-export const handleRight = (matrix, callback) => {
+export const handleUp = (matrix, setMatrix, setHistory, status, setStatus) => {
+  let newMatrix = matrix.slice();
+
+  newMatrix = noTopNull(newMatrix);
+  let matrixClone = newMatrix.slice();
+  newMatrix = newMatrix.map((arr, l) => {
+    return arr.map((n, c) => {
+      if (l !== 3) {
+        if (n === matrixClone[l + 1][c] && n !== null) {
+          matrixClone[l][c] = n + n;
+          setStatus(status + n + n);
+          matrixClone[l + 1][c] = null;
+        }
+      }
+    });
+  });
+  matrixClone = noTopNull(matrixClone);
+  setMatrix(matrixClone);
+  window.requestAnimationFrame(() => handleMoreOne(matrixClone, setMatrix));
+  setHistory(matrixClone);
+};
+
+function noTopNull(matrix) {
+  const matrixClone = matrix.slice();
+  let newMatrix = matrix.slice();
+  let t = [];
+  matrixClone.map((arr, l) => {
+    t.push([]);
+    arr.map((n, c) => {
+      t[l].push(newMatrix[c][l]);
+    });
+  });
+  t = t.map((arr, l) => {
+    return arr.filter(Boolean);
+  });
+
+  for (let arr of t) {
+    while (arr.length < 4) {
+      arr.push(null);
+    }
+  }
+  const tt = [];
+  t.map((arr, l) => {
+    tt.push([]);
+    arr.map((n, c) => {
+      tt[l].push(t[c][l]);
+    });
+  });
+  return tt;
+}
+
+export const handleLeft = (
+  matrix,
+  setMatrix,
+  setHistory,
+  status,
+  setStatus
+) => {
   const matrixClone = matrix.slice().map((arr) => {
     return arr.filter(Boolean);
   });
+
   let newMatrix = [];
   for (let arr of matrixClone) {
     const l = matrixClone.indexOf(arr);
@@ -9,25 +67,12 @@ export const handleRight = (matrix, callback) => {
     let count = 0;
     for (let n of arr) {
       const c = arr.indexOf(n, count);
-      if (c !== 3) {
-        if (n === newMatrix[l][c + 1] && n !== null) {
-          let k = c + 1;
+      if (c !== 0) {
+        if (n === newMatrix[l][c - 1] && n !== null) {
           let value = newMatrix[l][c];
-          const find = new RegExp(String(value), "g");
-          const qnts = arr.join(" ").match(find).length;
-          if (qnts % 2 !== 0) {
-            while (k < 4) {
-              if (value !== newMatrix[l][k] || k === 3) {
-                newMatrix[l][k] = value * 2;
-                newMatrix[l][k - 1] = null;
-                break;
-              }
-              k++;
-            }
-          } else {
-            newMatrix[l][c + 1] = value * 2;
-            newMatrix[l][c] = null;
-          }
+          newMatrix[l][c - 1] = value * 2;
+          setStatus(status + value * 2);
+          newMatrix[l][c] = null;
         }
       }
       count++;
@@ -36,15 +81,19 @@ export const handleRight = (matrix, callback) => {
   newMatrix = newMatrix.map((arr) => {
     return arr.filter(Boolean);
   });
-  for (let arr of newMatrix) {
-    while (arr.length < 4) {
-      arr.unshift(null);
-    }
-  }
-  callback(newMatrix);
+  for (let arr of newMatrix) while (arr.length < 4) arr.push(null);
+  setMatrix(newMatrix);
+  window.requestAnimationFrame(() => handleMoreOne(newMatrix, setMatrix));
+  setHistory(newMatrix);
 };
 
-export const handleLeft = (matrix, callback) => {
+export const handleRight = (
+  matrix,
+  setMatrix,
+  setHistory,
+  status,
+  setStatus
+) => {
   const matrixClone = matrix.slice().map((arr) => {
     return arr.filter(Boolean);
   });
@@ -59,6 +108,7 @@ export const handleLeft = (matrix, callback) => {
         if (n === newMatrix[l][c - 1] && n !== null) {
           let value = newMatrix[l][c];
           newMatrix[l][c - 1] = value * 2;
+          setStatus(status + value * 2);
           newMatrix[l][c] = null;
         }
       }
@@ -70,87 +120,14 @@ export const handleLeft = (matrix, callback) => {
   });
   for (let arr of newMatrix) {
     while (arr.length < 4) {
-      arr.push(null);
+      arr.unshift(null);
     }
   }
-  callback(newMatrix);
+  setMatrix(newMatrix);
+  window.requestAnimationFrame(() => handleMoreOne(newMatrix, setMatrix));
+  setHistory(newMatrix);
 };
 
-export const handleUp = (matrix, callback) => {
-  let newMatrix = matrix.slice();
-  noTopNull(newMatrix);
-  let matrixClone = newMatrix.slice();
-  newMatrix = newMatrix.map((arr, l) => {
-    return arr.map((n, c) => {
-      if (l !== 3) {
-        if (n === matrixClone[l + 1][c] && n !== null) {
-          matrixClone[l][c] = n + n;
-          matrixClone[l + 1][c] = null;
-        }
-      }
-    });
-  });
-  noTopNull(matrixClone);
-  callback(matrixClone);
-};
-
-function noTopNull(matrix) {
-  let matrixClone = matrix.slice();
-  for (let arr of matrixClone) {
-    let count = 0;
-    for (let n of arr) {
-      const l = arr.indexOf(n, count);
-      let k = 0;
-      while (k < 3) {
-        if (matrixClone[k][l] === null) {
-          matrixClone[k][l] = matrixClone[k + 1][l];
-          matrixClone[k + 1][l] = null;
-        }
-        k++;
-      }
-      count++;
-    }
-  }
-  return matrixClone;
-}
-
-export const handleDown = (matrix, callback) => {
-  let newMatrix = matrix.slice();
-  noDownNull(newMatrix);
-  let matrixClone = newMatrix.slice();
-  newMatrix = newMatrix.map((arr, l) => {
-    return arr.map((n, c) => {
-      if (l !== 0) {
-        if (n === matrixClone[l - 1][c] && n !== null) {
-          matrixClone[l][c] = n + n;
-          matrixClone[l - 1][c] = null;
-        }
-      }
-    });
-  });
-  noDownNull(matrixClone);
-  callback(matrixClone);
-};
-
-function noDownNull(matrix) {
-  let newMatrix = matrix.slice();
-  for (let arr of matrix) {
-    let count = 0;
-    for (let n of arr) {
-      const l = arr.indexOf(n, count);
-      let k = 3;
-      while (k < 4 && k > 0) {
-        if (matrix[k][l] === null) {
-          matrix[k][l] = matrix[k - 1][l];
-          matrix[k - 1][l] = null;
-        }
-        k--;
-      }
-      count++;
-    }
-  }
-  return newMatrix;
-}
 export const handleRandomValues = () => {
   let matrix = Array(4).fill(Array(4).fill(null));
   let random1;
@@ -174,4 +151,77 @@ export const handleRandomValues = () => {
     } else return arr;
   });
   return matrix;
+};
+
+export const handleDown = (
+  matrix,
+  setMatrix,
+  setHistory,
+  status,
+  setStatus
+) => {
+  let newMatrix = matrix.slice();
+  newMatrix = noDownNull(newMatrix);
+  let matrixClone = newMatrix.slice();
+  newMatrix = newMatrix.map((arr, l) => {
+    return arr.map((n, c) => {
+      if (l !== 0) {
+        if (n === matrixClone[l - 1][c] && n !== null) {
+          matrixClone[l][c] = n + n;
+          setStatus(status + n + n);
+          matrixClone[l - 1][c] = null;
+        }
+      }
+    });
+  });
+  matrixClone = noDownNull(matrixClone);
+  setMatrix(matrixClone);
+  window.requestAnimationFrame(() => handleMoreOne(matrixClone, setMatrix));
+  setHistory(matrixClone);
+};
+
+function noDownNull(matrix) {
+  const matrixClone = matrix.slice();
+  let newMatrix = matrix.slice();
+  let t = [];
+  matrixClone.map((arr, l) => {
+    t.push([]);
+    arr.map((n, c) => {
+      t[l].push(newMatrix[c][l]);
+    });
+  });
+  t = t.map((arr, l) => {
+    return arr.filter(Boolean);
+  });
+
+  for (let arr of t) {
+    while (arr.length < 4) {
+      arr.unshift(null);
+    }
+  }
+  const tt = [];
+  t.map((arr, l) => {
+    tt.push([]);
+    arr.map((n, c) => {
+      tt[l].push(t[c][l]);
+    });
+  });
+  return tt;
+}
+
+const handleMoreOne = (matrix, setMatrix) => {
+  const matrixClone = matrix.slice();
+  let l, c;
+  const matrixCloneLength = matrixClone
+    .map((arr) => {
+      return arr.filter(Boolean).length;
+    })
+    .reduce((a, b) => a + b);
+  if (matrixCloneLength === 16) return;
+  do {
+    l = Math.floor(Math.random() * 4);
+    c = Math.floor(Math.random() * 4);
+  } while (matrixClone[l][c] !== null);
+  matrixClone[l][c] = Math.floor(Math.random() * 6) ? 2 : 4;
+  setMatrix(matrixClone);
 };

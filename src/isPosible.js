@@ -1,12 +1,13 @@
 export const isPosibleUp = (matrix) => {
+  const matrixClone = matrix.slice();
   return Boolean(
-    matrix
+    matrixClone
       .map((arr, l) => {
         return arr
           .map((n, c) => {
             if (l !== 0) {
               const current = n;
-              const nextUp = matrix[l - 1][c];
+              const nextUp = matrixClone[l - 1][c];
               if (nextUp === null && current !== null) return true;
               if (current === nextUp && current !== null) return true;
             }
@@ -80,4 +81,18 @@ export const isPosibleRight = (matrix) => {
       })
       .filter(Boolean)[0]
   );
+};
+export const isWin = (matrix) => {
+  const arr = matrix
+    .slice()
+    .map((arr) => {
+      return arr
+        .map((n) => {
+          if (n === 2048) return true;
+          return false;
+        })
+        .filter(Boolean);
+    })
+    .filter(Boolean);
+  return arr[0][0];
 };

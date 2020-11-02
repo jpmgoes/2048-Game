@@ -1,21 +1,16 @@
-export function Button(props) {
+export function Buttons(props) {
   const { matrix } = props;
-  const style = {
-    width: "20px",
-    height: "20px",
-    margin: 3,
-    padding: 2,
-    textAlign: "center",
-  };
-  const matrixClone = matrix.slice().map((arr) => {
+
+  const makeButtons = () => {
     return (
-      <div>
-        {arr.map((n) => {
-          return <button style={style}>{n}</button>;
+      <div className="bigBoxDefault bigBoxNoNumPosition">
+        {matrix.map((arr) => {
+          return arr.map((n) => {
+            return <div className="miniBoxDefault noNum"></div>;
+          });
         })}
       </div>
     );
-  });
-  // console.log(matrixClone);
-  return matrixClone;
+  };
+  return makeButtons();
 }
