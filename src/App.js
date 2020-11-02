@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import {
   handleRight,
   handleLeft,
@@ -7,7 +7,6 @@ import {
   handleRandomValues,
 } from "./handleMotion";
 import { BigBox } from "./components/BigBox";
-import { GameOver } from "./components/GameOver";
 import { GameTop } from "./components/GameTop";
 import { GameDown } from "./components/GameDown";
 import { Arrows } from "./components/Arrows";
@@ -42,6 +41,7 @@ function App() {
   if (history) {
     localStorage.setItem("history", history);
   }
+
   //^ Commands
   function up() {
     handleUp(matrix, setMatrix, setHistory, score, setScore);
@@ -62,6 +62,31 @@ function App() {
     setScore(0);
   };
 
+  //!
+  // function a(matrix) {
+  //   let m = matrix.slice();
+  //   m[0][0] = 2048;
+  //   setMatrix(m);
+  // }
+  // function b(matrix) {
+  //   setMatrix([
+  //     [1, 2, 3, 4],
+  //     [5, 6, 7, 8],
+  //     [9, 10, 11, 12],
+  //     [13, 14, 15, 16],
+  //   ]);
+  // }
+  //!
+  //^ commands
+  useKey("KeyW", up);
+  useKey("KeyA", left);
+  useKey("KeyS", down);
+  useKey("KeyD", right);
+  useKey("ArrowUp", up);
+  useKey("ArrowRight", right);
+  useKey("ArrowDown", down);
+  useKey("ArrowLeft", left);
+
   //^ Render
   return (
     <React.Fragment>
@@ -72,13 +97,32 @@ function App() {
           setScore={setScore}
           restartGame={() => restartGame(setMatrix, randomMatrix)}
         />
-        <GameOver matrix={matrix} />
-        <BigBox matrix={matrix} />
+        <BigBox
+          matrix={matrix}
+          restartGame={() => restartGame(setMatrix, randomMatrix)}
+        />
         <Arrows onUp={up} onLeft={left} onDown={down} onRight={right} />
       </div>
+      {/* <button onClick={() => a(matrix)}>win</button>
+      <button onClick={() => b(matrix)}>lose</button> */}
       <GameDown />
     </React.Fragment>
   );
 }
 
 export default App;
+function useKey(key, callback) {
+  const callbackRef = useRef(callback);
+
+  useEffect(() => {
+    callbackRef.current = callback;
+  });
+
+  useEffect(() => {
+    function handle(event) {
+      if (event.code === key) callbackRef.current(event);
+    }
+    document.addEventListener("keypress", handle);
+    return () => document.removeEventListener("keypress", handle);
+  }, [key]);
+}

@@ -6,9 +6,10 @@ export function GameDown() {
   };
   return (
     <div className="gameDown">
-      <strong>HOW TO PLAY:</strong> Use your <strong>arrow keys</strong> to move
-      the tiles. Tiles with the same number <strong>merge into one</strong> when
-      they touch. Add them up to reach <strong>2048!</strong>
+      <strong>HOW TO PLAY:</strong> Use your <strong>W A S D</strong> to move
+      the tiles <strong>or hit the arrow keys above</strong>. Tiles with the
+      same number <strong>merge into one</strong> when they touch. Add them up
+      to reach <strong>2048!</strong>
       <br />
       <strong
         onClick={startPlaying}

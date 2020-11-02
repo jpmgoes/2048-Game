@@ -82,3 +82,17 @@ export const isPosibleRight = (matrix) => {
       .filter(Boolean)[0]
   );
 };
+export const isWin = (matrix) => {
+  const arr = matrix
+    .slice()
+    .map((arr) => {
+      return arr
+        .map((n) => {
+          if (n === 2048) return true;
+          return false;
+        })
+        .filter(Boolean);
+    })
+    .filter(Boolean);
+  return arr[0][0];
+};

@@ -37,6 +37,9 @@ body {
   font-weight: 600;
   font-size: 42px;
   transition: all 0.5s;
+  position: relative;
+  right: 118px;
+  z-index: 1;
 }
 .noNum {
   background-color: #cdc0b5;
@@ -61,7 +64,7 @@ body {
 }
 .bigBoxWithArrows {
   background-color: #9b8e84;
-  margin-top: 30px;
+  margin-top: 20px;
   border-radius: 10px;
   padding: 0px 50px 23px 50px;
 }
@@ -169,4 +172,43 @@ h1 {
   padding: 20px;
   transition: all 0.5s;
   border-radius: 6px;
+}
+.winInterface {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  background-color: #faf8ef;
+  transition: all 0.5s;
+  opacity: 0;
+  border-radius: 6px;
+  height: 480px;
+  width: 480px;
+  position: relative;
+  top: -17px;
+  left: -17px;
+  z-index: 2;
+  color: #776e65;
+  text-align: center;
+  grid-template-areas:
+    ". . ."
+    ". t ."
+    ". b ."
+    ". . .";
+}
+.youWon {
+  font-size: 4rem;
+  height: 0;
+  grid-area: t;
+}
+.youWonButton {
+  grid-area: b;
+  height: 50px;
+  color: #faf8ef;
+  outline: none;
+  border: solid 1px transparent;
+  border-radius: 6px;
+  background-color: #776e65;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 800;
 }
