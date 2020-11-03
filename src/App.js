@@ -72,19 +72,19 @@ function App() {
   };
 
   //!
-  function a(matrix) {
-    let m = matrix.slice();
-    m[0][0] = 2048;
-    setMatrix(m);
-  }
-  function b(matrix) {
-    setMatrix([
-      [2, 4, 8, 16],
-      [32, 64, 128, 256],
-      [512, 1024, 2, 4],
-      [8, 16, 32, 64],
-    ]);
-  }
+  // function a(matrix) {
+  //   let m = matrix.slice();
+  //   m[0][0] = 2048;
+  //   setMatrix(m);
+  // }
+  // function b(setMatrix) {
+  //   setMatrix([
+  //     [2, 4, 8, 16],
+  //     [32, 64, 128, 256],
+  //     [512, 1024, 2, 4],
+  //     [8, 16, 32, 64],
+  //   ]);
+  // }
   //!
   //^ commands
   useKey("KeyW", up);
@@ -108,8 +108,8 @@ function App() {
         />
         <Arrows onUp={up} onLeft={left} onDown={down} onRight={right} />
       </div>
-      <button onClick={() => a(matrix)}>win</button>
-      <button onClick={() => b(matrix)}>lose</button>
+      {/* <button onClick={() => a(matrix)}>win</button>
+      <button onClick={() => b(matrix)}>lose</button> */}
       <GameDown />
     </React.Fragment>
   );
