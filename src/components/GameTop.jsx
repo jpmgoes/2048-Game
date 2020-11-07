@@ -1,11 +1,13 @@
 import { Score } from "./Score";
 export function GameTop(props) {
   const { score, history, setScore, restartGame } = props;
+
   const howToPlay = () => {
-    const starPlaying = document.querySelector(".gameDown");
-    setTimeout(() => (starPlaying.style.background = "#f3d774"), 100);
-    setTimeout(() => (starPlaying.style.background = "transparent"), 1000);
+    const startPlaying = document.querySelector(".gameDown");
+    setTimeout(() => (startPlaying.style.background = "#f3d774"), 100);
+    setTimeout(() => (startPlaying.style.background = "transparent"), 1000);
   };
+
   return (
     <>
       <div className="gameTop">
