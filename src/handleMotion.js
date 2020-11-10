@@ -19,7 +19,7 @@ export const handleUp = (matrix, setMatrix, setHistory, status, setStatus) => {
   matrixClone = transposed(matrixClone);
 
   setMatrix(matrixClone);
-  handleMoreOne(matrixClone, setMatrix);
+  handleOneMore(matrixClone, setMatrix);
   setHistory(matrixClone);
 };
 
@@ -40,7 +40,7 @@ export const handleLeft = (
   insertNull(matrixClone, (matrix, value) => matrix.push(value));
 
   setMatrix(matrixClone);
-  handleMoreOne(matrixClone, setMatrix);
+  handleOneMore(matrixClone, setMatrix);
   setHistory(matrixClone);
 };
 
@@ -61,7 +61,7 @@ export const handleRight = (
   insertNull(matrixClone, (matrix, value) => matrix.unshift(value));
 
   setMatrix(matrixClone);
-  handleMoreOne(matrixClone, setMatrix);
+  handleOneMore(matrixClone, setMatrix);
   setHistory(matrixClone);
 };
 
@@ -86,7 +86,7 @@ export const handleDown = (
   matrixClone = transposed(matrixClone);
 
   setMatrix(matrixClone);
-  handleMoreOne(matrixClone, setMatrix);
+  handleOneMore(matrixClone, setMatrix);
   setHistory(matrixClone);
 };
 
@@ -115,7 +115,7 @@ export const handleRandomValues = () => {
   return matrix;
 };
 
-const handleMoreOne = (matrix, setMatrix) => {
+const handleOneMore = (matrix, setMatrix) => {
   const matrixClone = matrix.slice();
 
   let l, c;
