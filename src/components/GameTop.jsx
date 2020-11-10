@@ -12,6 +12,7 @@ export function GameTop(props) {
     <>
       <div className="gameTop">
         <h1>2048</h1>
+        {/* <h6>MORE EASY</h6> */}
         <Score score={score} history={history} setScore={setScore} />
         <button className="restartGame" onClick={restartGame}>
           New Game

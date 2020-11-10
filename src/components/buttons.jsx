@@ -1,6 +1,5 @@
 export function Buttons(props) {
   const { matrix } = props;
-
   const makeButtons = () => {
     return (
       <div className="bigBoxDefault bigBoxNoNumPosition">

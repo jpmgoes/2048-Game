@@ -36,7 +36,7 @@ body {
   text-align: center;
   font-weight: 600;
   font-size: 42px;
-  transition: all 0.5s;
+  transition: all 0.1s;
   position: relative;
   right: 118px;
   z-index: 1;
@@ -114,7 +114,17 @@ body {
   display: grid;
   grid-template-areas:
     "t . . . s"
+    "h . . . ."
     "tt . . . bg";
+}
+h6 {
+  color: #fff;
+  grid-area: h;
+  height: 0;
+  margin: 0 0 0 103px;
+  position: relative;
+  top: -15px;
+  padding: 0;
 }
 .scoreboard {
   display: grid;

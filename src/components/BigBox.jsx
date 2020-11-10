@@ -4,7 +4,6 @@ import { Win } from "./Win";
 
 export function BigBox(props) {
   const { matrix, restartGame } = props;
-
   return (
     <div className="bigSquare">
       <Win matrix={matrix} restartGame={restartGame} />

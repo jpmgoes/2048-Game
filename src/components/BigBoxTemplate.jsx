@@ -22,7 +22,8 @@ export function BigBoxTemplate(props) {
       <div className="bigBoxDefault bigBoxNumPosition">
         {matrix.map((arr, l) => {
           return arr.map((n, c) => {
-            if (n === null) return <div></div>;
+            if (n === null)
+              return <div className={"miniBox" + l + String(c)}></div>;
             const index = color.num.indexOf(n);
             const style = {
               backgroundColor: color.color[index],
