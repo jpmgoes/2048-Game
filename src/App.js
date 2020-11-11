@@ -15,22 +15,9 @@ import "./index.css";
 function App() {
   //^ Handle Matrix
   const randomMatrix = handleRandomValues();
-  let lastGame = localStorage.getItem("history");
-  let lastGameArr = [];
-  if (lastGame) {
-    lastGame = lastGame.split(",").map((a, i) => {
-      if (i % 4 === 0) lastGameArr.push([]);
-      if (a === "") return null;
-      return Number(a);
-    });
-    let count = 0;
-    for (let arr of lastGameArr)
-      while (arr.length < 4) arr.push(lastGame[count++]);
-  }
+  let lastGame = JSON.parse(localStorage.getItem("history"));
 
-  const [matrix, setMatrix] = useState(
-    lastGameArr[0] ? lastGameArr : randomMatrix
-  );
+  const [matrix, setMatrix] = useState(lastGame ? lastGame : randomMatrix);
   //^ Score
   const [score, setScore] = useState(
     localStorage.getItem("score") ? Number(localStorage.getItem("score")) : 0
@@ -38,7 +25,7 @@ function App() {
   //^ History
   const [history, setHistory] = useState();
   localStorage.setItem("score", score);
-  if (history) localStorage.setItem("history", history);
+  if (history) localStorage.setItem("history", JSON.stringify(history));
 
   //^ Commands
   function changeArrow(className) {
@@ -48,6 +35,7 @@ function App() {
       setTimeout(() => (arrow.style.background = "#eee4da"), 150);
     }
   }
+
   function up() {
     handleUp({ matrix, score, setMatrix, setHistory, setScore });
     changeArrow("arrowUP");
@@ -72,20 +60,21 @@ function App() {
   };
 
   //!
-  function a(matrix) {
-    let m = matrix.slice();
-    m[0][0] = 2048;
-    setMatrix(m);
-  }
-  function b() {
-    setMatrix([
-      [2, 4, 8, 16],
-      [32, 64, 128, 256],
-      [512, 1024, 2, 4],
-      [8, 16, 32, 64],
-    ]);
-  }
+  // function a(matrix) {
+  //   let m = matrix.slice();
+  //   m[0][0] = 2048;
+  //   setMatrix(m);
+  // }
+  // function b() {
+  //   setMatrix([
+  //     [2, 4, 8, 16],
+  //     [32, 64, 128, 256],
+  //     [512, 1024, 2, 4],
+  //     [8, 16, 32, 64],
+  //   ]);
+  // }
   //!
+
   //^ commands
   useKey("KeyW", up);
   useKey("KeyA", left);
@@ -111,10 +100,10 @@ function App() {
             <Arrows onUp={up} onLeft={left} onDown={down} onRight={right} />
           </div>
         </div>
-        {/* <button onClick={() => a(matrix)} className="algoAI">
+        {/* <button onClick={() => a(matrix)} className="winLoseB">
           win
         </button>
-        <button onClick={() => b(matrix)} className="algoAI">
+        <button onClick={() => b(matrix)} className="winLoseB">
           lose
         </button> */}
         <GameDown />

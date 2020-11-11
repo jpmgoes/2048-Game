@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "2048 GAME",
+  "name": "2048 GAME",
   "icons": [
     {
       "src": "favicon.ico",
