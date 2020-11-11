@@ -5,14 +5,14 @@ import {
   logical,
 } from "./fnToHandleMotion";
 export const handleUp = (args) => {
-  const { matrix, score, setMatrix, setHistory, setScore } = args;
+  const { matrix, setMatrix, setHistory, setScore } = args;
 
   let matrixClone = matrix.slice();
   matrixClone = transposed(matrixClone);
 
   matrixClone = removeNull(matrixClone);
 
-  matrixClone = logical(matrixClone, setScore, score);
+  matrixClone = logical(matrixClone, setScore);
 
   matrixClone = removeNull(matrixClone);
 
@@ -26,12 +26,12 @@ export const handleUp = (args) => {
 };
 
 export const handleLeft = (args) => {
-  const { matrix, score, setMatrix, setHistory, setScore } = args;
+  const { matrix, setMatrix, setHistory, setScore } = args;
 
   let matrixClone = matrix.slice();
   matrixClone = removeNull(matrixClone);
 
-  matrixClone = logical(matrixClone, setScore, score);
+  matrixClone = logical(matrixClone, setScore);
 
   matrixClone = removeNull(matrixClone);
 
@@ -43,19 +43,12 @@ export const handleLeft = (args) => {
 };
 
 export const handleRight = (args) => {
-  const { matrix, score, setMatrix, setHistory, setScore } = args;
+  const { matrix, setMatrix, setHistory, setScore } = args;
 
   let matrixClone = matrix.slice();
   matrixClone = removeNull(matrixClone);
 
-  // //!
-  // const verifyMatrix = matrix.slice();
-  // let confirmMatrix = matrixClone.slice();
-  // insertNull(confirmMatrix, (matrix, value) => matrix.unshift(value));
-  // animation(verifyMatrix, confirmMatrix);
-  // //!
-
-  matrixClone = logical(matrixClone, setScore, score);
+  matrixClone = logical(matrixClone, setScore);
 
   matrixClone = removeNull(matrixClone);
 
@@ -67,14 +60,14 @@ export const handleRight = (args) => {
 };
 
 export const handleDown = (args) => {
-  const { matrix, score, setMatrix, setHistory, setScore } = args;
+  const { matrix, setMatrix, setHistory, setScore } = args;
 
   let matrixClone = matrix.slice();
   matrixClone = transposed(matrixClone);
 
   matrixClone = removeNull(matrixClone);
 
-  matrixClone = logical(matrixClone, setScore, score);
+  matrixClone = logical(matrixClone, setScore);
 
   matrixClone = removeNull(matrixClone);
 

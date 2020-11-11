@@ -26,7 +26,7 @@ export function insertNull(matrix, callback) {
   return matrix;
 }
 
-export function logical(matrix, setScore, score) {
+export function logical(matrix, setScore) {
   let newMatrix = [];
 
   for (let arr of matrix) {
@@ -39,7 +39,7 @@ export function logical(matrix, setScore, score) {
         if (n === newMatrix[l][c - 1] && n !== null) {
           let value = newMatrix[l][c];
           newMatrix[l][c - 1] = value * 2;
-          setScore(score + value * 2);
+          setScore((prevScore) => prevScore + value * 2);
           newMatrix[l][c] = null;
           break;
         }

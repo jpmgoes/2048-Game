@@ -38,21 +38,21 @@ function App() {
       setTimeout(() => (arrow.style.background = "#eee4da"), 150);
     }
   }
-
+  const args = { matrix, setMatrix, setHistory, setScore };
   function up() {
-    handleUp({ matrix, score, setMatrix, setHistory, setScore });
+    handleUp(args);
     changeArrow("arrowUP");
   }
   function left() {
-    handleLeft({ matrix, score, setMatrix, setHistory, setScore });
+    handleLeft(args);
     changeArrow("arrowLeft");
   }
   function down() {
-    handleDown({ matrix, score, setMatrix, setHistory, setScore });
+    handleDown(args);
     changeArrow("arrowDown");
   }
   function right() {
-    handleRight({ matrix, score, setMatrix, setHistory, setScore });
+    handleRight(args);
     changeArrow("arrowRight");
   }
 
