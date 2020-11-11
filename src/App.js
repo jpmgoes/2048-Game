@@ -15,9 +15,12 @@ import "./index.css";
 function App() {
   //^ Handle Matrix
   const randomMatrix = handleRandomValues();
+
   let lastGame = JSON.parse(localStorage.getItem("history"));
 
-  const [matrix, setMatrix] = useState(lastGame ? lastGame : randomMatrix);
+  const [matrix, setMatrix] = useState(
+    lastGame && lastGame[0] ? lastGame : randomMatrix
+  );
   //^ Score
   const [score, setScore] = useState(
     localStorage.getItem("score") ? Number(localStorage.getItem("score")) : 0
