@@ -1,0 +1,21 @@
+.arrowTop {
+  display: grid;
+  justify-content: center;
+  grid-area: Aup;
+}
+.arrows {
+  grid-area: arrows;
+  display: grid;
+  grid-template-areas: "l m r";
+}
+.arrowGeneral {
+  background-color: #eee4da;
+  padding: 20px;
+  width: 100px;
+  margin: 2px;
+  border: solid 1px transparent;
+  border-radius: 3px;
+  font-size: 20px;
+  transition: all 0.5s;
+  cursor: pointer;
+}

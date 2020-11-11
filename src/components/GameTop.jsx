@@ -4,7 +4,7 @@ export function GameTop(props) {
 
   const howToPlay = () => {
     const startPlaying = document.querySelector(".gameDown");
-    setTimeout(() => (startPlaying.style.background = "#f3d774"), 100);
+    startPlaying.style.background = "#f3d774";
     setTimeout(() => (startPlaying.style.background = "transparent"), 1000);
   };
 
@@ -12,13 +12,12 @@ export function GameTop(props) {
     <>
       <div className="gameTop">
         <h1>2048</h1>
-        {/* <h6>MORE EASY</h6> */}
         <Score score={score} history={history} setScore={setScore} />
         <button className="restartGame" onClick={restartGame}>
           New Game
         </button>
         <p className="topText">
-          Join the tiles, get to <strong>2048!</strong>{" "}
+          Join the tiles, get to <strong>2048!</strong> <br />
           <strong
             onClick={howToPlay}
             style={{ textDecoration: "underline", cursor: "pointer" }}

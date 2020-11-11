@@ -1,292 +1,86 @@
 * {
   box-sizing: border-box;
+  font-family: Arial, Helvetica, sans-serif;
+  transition: all 0.2s;
 }
+html,
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  display: grid;
-  justify-content: center;
+  z-index: -15;
   background-color: #faf8ef;
 }
-
-.bigSquare {
-  width: 480px;
-  height: 480px;
-  display: grid;
-  margin-top: 10px;
-  gap: 15px;
-  grid-template: repeat(4, 100px) / repeat(4, 100px);
-  justify-content: center;
-  align-content: center;
-  transition: all 0.5s;
-  border-radius: 6px;
-  background-color: #bbada0;
-}
-.miniBoxDefault {
-  width: 106px;
-  height: 106px;
-  display: grid;
-  border-radius: 3px;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  font-weight: 600;
-  font-size: 42px;
-  transition: all 0.1s;
-  position: relative;
-  right: 118px;
-  z-index: 1;
-}
-
-.noNum {
-  background-color: #cdc0b5;
-}
-.bigBoxNoNumPosition {
-  top: 170px;
-  right: -172px;
-}
-.bigBoxNumPosition {
-  top: 170px;
-  right: -57px;
-}
-.bigBoxDefault {
-  display: grid;
-  gap: 15px;
-  grid-template: repeat(4, 100px) / repeat(4, 100px);
-  justify-content: center;
-  align-content: center;
-  transition: all 0.5s;
-  border-radius: 6px;
-  position: relative;
-}
-.bigBoxWithArrows {
+.allGame {
   display: grid;
   justify-content: center;
-  background-color: #9b8e84;
-  margin-top: 20px;
-  border-radius: 10px;
-  padding: 0px 50px 23px 50px;
-}
-.arrows {
-  width: 100%;
-  margin-top: 23px;
-  display: grid;
-  grid-template-areas: "bl bd br";
-  justify-content: center;
-}
-.arrowGeneral {
-  background-color: #eee4da;
-  padding: 20px;
-  width: 100px;
-  margin: 2px;
-  border: solid 1px transparent;
-  border-radius: 3px;
-  font-size: 20px;
-  transition: all 0.5s;
-  cursor: pointer;
-}
-.arrowGeneral:hover {
-  background-color: #cec5bb;
-}
-.arrowTop {
-  position: relative;
-  top: 23px;
-  right: -188px;
-}
-.arrowUP {
-  grid-area: bup;
-}
-.arrowLeft {
-  grid-area: bl;
-}
-.arrowDown {
-  grid-area: bd;
-}
-.arrowRight {
-  grid-area: br;
-}
-.arrowGeneral:focus {
-  border: 1px solid transparent;
-  outline: none;
-}
-.gameTop {
-  display: grid;
+  justify-items: center;
   grid-template-areas:
-    "t . . . s"
-    "h . . . ."
-    "tt . . . bg";
-}
-h6 {
-  color: #fff;
-  grid-area: h;
-  height: 0;
-  margin: 0 0 0 103px;
-  position: relative;
-  top: -15px;
-  padding: 0;
-}
-.scoreboard {
-  display: grid;
-  grid-template-columns: repeat(2, auto);
-  justify-content: flex-end;
-  height: auto;
-  gap: 10px;
-  text-align: center;
-  grid-area: s;
-  margin-right: 0;
-}
-.scoreBase {
-  display: grid;
-  width: 100%;
-  height: 50px;
-  margin-top: 55px;
-  justify-self: center;
-  background-color: #bbada0;
-  color: #ffffff;
-  font-weight: 800;
-  padding: 12px;
-  border-radius: 3px;
-}
-.restartGame {
-  grid-area: bg;
-  background-color: #faf8ef;
-  color: #8f7a66;
-  font-weight: 800;
-  outline: none;
-  border: solid 1px transparent;
-  border-radius: 3px;
-  padding: 10px;
-  width: 70%;
-  margin-left: 52px;
-  margin-bottom: 10px;
-  cursor: pointer;
-  font-size: 1rem;
-}
-h1 {
-  color: #faf8ef;
-  font-size: 4rem;
-  font-weight: 800;
-  grid-area: t;
-  height: 40px;
-}
-.topText {
-  grid-area: tt;
-  width: 230px;
-  height: 20px;
-  padding-bottom: 10px;
+    ". . . ."
+    ". g g ."
+    ". d d ."
+    ". . . .";
+  z-index: -10;
 }
 .gameDown {
+  grid-area: d;
+}
+.bigBoxWithArrows {
+  grid-area: g;
+  display: grid;
+  grid-template-areas:
+    "t t t"
+    "g g g"
+    "ar ar ar";
+}
+.gameTop {
+  grid-area: t;
+  display: grid;
+  grid-template-areas:
+    "h1  . . s"
+    "htp . . new";
+}
+/* ^ gameTop - parts*/
+h1 {
+  grid-area: h1;
+}
+.scoreboard {
+  grid-area: s;
+  display: grid;
+  gap: 10px;
+  grid-template-areas: "score best";
+}
+.topText {
+  grid-area: htp;
+}
+.restartGame {
+  grid-area: new;
+}
+.bigSquare {
+  grid-area: g;
+  width: 100%;
+}
+.allArrows {
+  grid-area: ar;
+  display: grid;
+  grid-template-areas:
+    "Aup"
+    "arrows";
+  width: 100%;
+  z-index: 3;
+  justify-content: center;
+  align-items: center;
   margin-top: 10px;
-  width: 580px;
+}
+
+/* */
+.algoAI {
+  position: absolute;
+  left: 100px;
+}
+/* GameDown */
+.gameDown {
+  margin-top: 10px;
+  width: 355px;
   padding: 20px;
   transition: all 0.5s;
   border-radius: 6px;
-}
-.winInterface {
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  background-color: #faf8ef;
-  transition: all 0.5s;
-  opacity: 0;
-  border-radius: 6px;
-  height: 480px;
-  width: 480px;
-  position: relative;
-  top: -17px;
-  left: -17px;
-  z-index: -2;
-  color: #776e65;
-  text-align: center;
-  grid-template-areas:
-    ". . ."
-    ". t ."
-    ". b ."
-    ". . .";
-}
-.youWon {
-  font-size: 4rem;
-  height: 0;
-  grid-area: t;
-}
-.youWonButton {
-  display: grid;
-  justify-content: center;
-  text-align: center;
-  align-items: center;
-  grid-area: b;
-  height: 50px;
-  color: #faf8ef;
-  outline: none;
-  border: solid 1px transparent;
-  border-radius: 6px;
-  background-color: #776e65;
-  font-size: 1rem;
-  cursor: pointer;
-  font-weight: 800;
-  z-index: -2;
-}
-/* ^ smartphone */
-@media (max-width: 600px) {
-  body {
-    width: 150%;
-  }
-  .bigSquare {
-    width: 360px;
-    height: 360px;
-    grid-template: repeat(4, 85px) / repeat(4, 85px);
-    gap: 2px;
-  }
-  .bigBoxWithArrows {
-    width: 440px;
-    margin-left: 10%;
-  }
-  .miniBoxDefault {
-    width: 70px;
-    height: 70px;
-  }
-  .bigBoxNoNumPosition {
-    top: 137px;
-    right: -170px;
-  }
-  .bigBoxNumPosition {
-    top: 137px;
-    right: -83px;
-  }
-  .bigBoxDefault {
-    display: grid;
-    gap: 2px;
-    grid-template: repeat(4, 85px) / repeat(4, 85px);
-  }
-  .arrowTop {
-    position: relative;
-    top: 23px;
-    right: -128px;
-  }
-  .gameDown {
-    width: 440px;
-    margin: 5px 0 0 10%;
-  }
-  .winInterface {
-    height: 360px;
-    width: 360px;
-    top: -7px;
-    left: -7px;
-    z-index: -2;
-  }
-  .youWon {
-    font-size: 2rem;
-    height: 0;
-    grid-area: t;
-  }
-}
-@media (max-width: 600) {
-  .gameDown {
-  }
-  .bigBoxWithArrows {
-  }
+  z-index: 10;
 }

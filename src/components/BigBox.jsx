@@ -7,8 +7,14 @@ export function BigBox(props) {
   return (
     <div className="bigSquare">
       <Win matrix={matrix} restartGame={restartGame} />
-      <Buttons matrix={matrix} />
-      <BigBoxTemplate matrix={matrix} />
+      <div className="allGameInnerDivs">
+        <div className="allNumAndNoNumsDivs">
+          <BigBoxTemplate matrix={matrix} />
+        </div>
+        <div className="allTemplateDivs">
+          <Buttons matrix={matrix} />
+        </div>
+      </div>
     </div>
   );
 }

@@ -1,0 +1,89 @@
+.allGameInnerDivs {
+  display: grid;
+  height: 355px;
+  background-color: #bbada0;
+  justify-content: center;
+  align-items: center;
+  padding: 15px 0px 0 0px;
+  position: relative;
+  top: -355px;
+}
+.bigBoxDefault {
+  display: grid;
+  gap: 10px;
+  grid-template-areas:
+    "b00 b01 b02 b03"
+    "b10 b11 b12 b13"
+    "b20 b21 b22 b23"
+    "b30 b31 b32 b33";
+  z-index: 2;
+}
+.bigBoxNoNumPosition {
+  position: relative;
+  top: -322px;
+  z-index: 0;
+}
+.miniBoxDefault {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 73px;
+  width: 73px;
+  font-weight: 600;
+  font-size: 26px;
+  border-radius: 3px;
+  z-index: 1;
+}
+.noNum {
+  border-radius: 3px;
+  height: 73px;
+  width: 73px;
+  background-color: #cdc0b5;
+}
+/* win and game over */
+.bigSquare {
+  height: 355px;
+}
+.winInterface {
+  position: relative;
+  height: 355px;
+  width: 355px;
+  transition: all 0.5s;
+  background-color: #faf8ef;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  z-index: -2;
+  color: #776e65;
+  text-align: center;
+  grid-template-areas:
+    ". . ."
+    ". t ."
+    ". b ."
+    ". . .";
+}
+
+.youWon {
+  font-size: 2rem;
+  height: 0;
+  grid-area: t;
+}
+
+.youWonButton {
+  display: grid;
+  justify-content: center;
+  text-align: center;
+  align-items: center;
+  grid-area: b;
+  height: 50px;
+  color: #faf8ef;
+  outline: none;
+  border: solid 1px transparent;
+  border-radius: 6px;
+  background-color: #776e65;
+  font-size: 1rem;
+  cursor: pointer;
+  font-weight: 800;
+  z-index: -2;
+}

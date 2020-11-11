@@ -1,6 +1,9 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
+import "./mainPartGame.css";
+import "./topGame.css";
+import "./arrows.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 

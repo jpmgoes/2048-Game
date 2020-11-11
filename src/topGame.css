@@ -1,0 +1,41 @@
+h1 {
+  font-size: 50px;
+  height: 50px;
+  color: #8f7a66;
+}
+/* score */
+.scoreBase {
+  display: grid;
+  width: 80px;
+  height: 50px;
+  justify-self: center;
+  background-color: #bbada0;
+  color: #fff;
+  font-weight: 800;
+  padding: 12px;
+  border-radius: 3px;
+  text-align: center;
+  margin-top: 35px;
+}
+.score {
+  grid-area: score;
+  position: relative;
+}
+.best {
+  grid-area: best;
+}
+/* new game */
+.restartGame {
+  color: #faf8ef;
+  background-color: #8f7a66;
+  font-weight: 800;
+  outline: none;
+  border: solid 1px transparent;
+  border-radius: 3px;
+  padding: 10px;
+  width: 70%;
+  margin-left: 52px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  font-size: 16px;
+}

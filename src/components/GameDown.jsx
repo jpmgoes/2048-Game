@@ -1,7 +1,7 @@
 export function GameDown() {
   const startPlaying = () => {
-    const bigBox = document.querySelector(".bigSquare");
-    setTimeout(() => (bigBox.style.background = "#f3d774"), 100);
+    const bigBox = document.querySelector(".allGameInnerDivs");
+    bigBox.style.background = "#f3d774";
     setTimeout(() => (bigBox.style.background = "#bbada0"), 1000);
   };
   return (

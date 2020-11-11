@@ -22,23 +22,31 @@ export function BigBoxTemplate(props) {
       <div className="bigBoxDefault bigBoxNumPosition">
         {matrix.map((arr, l) => {
           return arr.map((n, c) => {
-            if (n === null)
+            if (n === null) {
+              const style = {
+                gridArea: `b${l}${c}`,
+              };
               return (
-                <div className={"miniBoxDefault miniBox" + l + String(c)}>
-                  +
+                <div
+                  className={"miniBoxDefault miniBox" + l + String(c)}
+                  style={style}
+                >
+                  <a>+</a>
                 </div>
               );
+            }
             const index = color.num.indexOf(n);
             const style = {
               backgroundColor: color.color[index],
               color: n > 4 ? color.font[1] : color.font[0],
               cursor: "pointer",
+              gridArea: `b${l}${c}`,
             };
             function anime(l, c) {
               const minibox = document.querySelector(
                 ".miniBox" + l + String(c)
               );
-              setTimeout(() => (minibox.style.transform = "scale(1.2)"), 10);
+              minibox.style.transform = "scale(1.2)";
               setTimeout(() => (minibox.style.transform = "scale(1)"), 300);
             }
             return (
@@ -47,7 +55,7 @@ export function BigBoxTemplate(props) {
                 style={style}
                 onClick={() => anime(l, c)}
               >
-                {n}
+                <a>{n}</a>
               </div>
             );
           });
