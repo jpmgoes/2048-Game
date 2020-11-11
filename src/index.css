@@ -41,6 +41,7 @@ body {
   right: 118px;
   z-index: 1;
 }
+
 .noNum {
   background-color: #cdc0b5;
 }
@@ -63,6 +64,8 @@ body {
   position: relative;
 }
 .bigBoxWithArrows {
+  display: grid;
+  justify-content: center;
   background-color: #9b8e84;
   margin-top: 20px;
   border-radius: 10px;
@@ -226,4 +229,64 @@ h1 {
   cursor: pointer;
   font-weight: 800;
   z-index: -2;
+}
+/* ^ smartphone */
+@media (max-width: 600px) {
+  body {
+    width: 150%;
+  }
+  .bigSquare {
+    width: 360px;
+    height: 360px;
+    grid-template: repeat(4, 85px) / repeat(4, 85px);
+    gap: 2px;
+  }
+  .bigBoxWithArrows {
+    width: 440px;
+    margin-left: 10%;
+  }
+  .miniBoxDefault {
+    width: 70px;
+    height: 70px;
+  }
+  .bigBoxNoNumPosition {
+    top: 137px;
+    right: -170px;
+  }
+  .bigBoxNumPosition {
+    top: 137px;
+    right: -83px;
+  }
+  .bigBoxDefault {
+    display: grid;
+    gap: 2px;
+    grid-template: repeat(4, 85px) / repeat(4, 85px);
+  }
+  .arrowTop {
+    position: relative;
+    top: 23px;
+    right: -128px;
+  }
+  .gameDown {
+    width: 440px;
+    margin: 5px 0 0 10%;
+  }
+  .winInterface {
+    height: 360px;
+    width: 360px;
+    top: -7px;
+    left: -7px;
+    z-index: -2;
+  }
+  .youWon {
+    font-size: 2rem;
+    height: 0;
+    grid-area: t;
+  }
+}
+@media (max-width: 600) {
+  .gameDown {
+  }
+  .bigBoxWithArrows {
+  }
 }

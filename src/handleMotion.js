@@ -3,7 +3,6 @@ import {
   removeNull,
   insertNull,
   logical,
-  animation,
 } from "./fnToHandleMotion";
 export const handleUp = (args) => {
   const { matrix, score, setMatrix, setHistory, setScore } = args;
