@@ -49,19 +49,19 @@ function App() {
     }
   }
   function up() {
-    handleUp(matrix, setMatrix, setHistory, score, setScore);
+    handleUp({ matrix, score, setMatrix, setHistory, setScore });
     changeArrow("arrowUP");
   }
   function left() {
-    handleLeft(matrix, setMatrix, setHistory, score, setScore);
+    handleLeft({ matrix, score, setMatrix, setHistory, setScore });
     changeArrow("arrowLeft");
   }
   function down() {
-    handleDown(matrix, setMatrix, setHistory, score, setScore);
+    handleDown({ matrix, score, setMatrix, setHistory, setScore });
     changeArrow("arrowDown");
   }
   function right() {
-    handleRight(matrix, setMatrix, setHistory, score, setScore);
+    handleRight({ matrix, score, setMatrix, setHistory, setScore });
     changeArrow("arrowRight");
   }
 

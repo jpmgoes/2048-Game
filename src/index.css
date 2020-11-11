@@ -196,7 +196,7 @@ h1 {
   position: relative;
   top: -17px;
   left: -17px;
-  z-index: 2;
+  z-index: -2;
   color: #776e65;
   text-align: center;
   grid-template-areas:

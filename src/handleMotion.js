@@ -3,14 +3,17 @@ import {
   removeNull,
   insertNull,
   logical,
+  animation,
 } from "./fnToHandleMotion";
-export const handleUp = (matrix, setMatrix, setHistory, status, setStatus) => {
+export const handleUp = (args) => {
+  const { matrix, score, setMatrix, setHistory, setScore } = args;
+
   let matrixClone = matrix.slice();
   matrixClone = transposed(matrixClone);
 
   matrixClone = removeNull(matrixClone);
 
-  matrixClone = logical(matrixClone, setStatus, status);
+  matrixClone = logical(matrixClone, setScore, score);
 
   matrixClone = removeNull(matrixClone);
 
@@ -23,17 +26,13 @@ export const handleUp = (matrix, setMatrix, setHistory, status, setStatus) => {
   setHistory(matrixClone);
 };
 
-export const handleLeft = (
-  matrix,
-  setMatrix,
-  setHistory,
-  status,
-  setStatus
-) => {
+export const handleLeft = (args) => {
+  const { matrix, score, setMatrix, setHistory, setScore } = args;
+
   let matrixClone = matrix.slice();
   matrixClone = removeNull(matrixClone);
 
-  matrixClone = logical(matrixClone, setStatus, status);
+  matrixClone = logical(matrixClone, setScore, score);
 
   matrixClone = removeNull(matrixClone);
 
@@ -44,17 +43,20 @@ export const handleLeft = (
   setHistory(matrixClone);
 };
 
-export const handleRight = (
-  matrix,
-  setMatrix,
-  setHistory,
-  status,
-  setStatus
-) => {
+export const handleRight = (args) => {
+  const { matrix, score, setMatrix, setHistory, setScore } = args;
+
   let matrixClone = matrix.slice();
   matrixClone = removeNull(matrixClone);
 
-  matrixClone = logical(matrixClone, setStatus, status);
+  // //!
+  // const verifyMatrix = matrix.slice();
+  // let confirmMatrix = matrixClone.slice();
+  // insertNull(confirmMatrix, (matrix, value) => matrix.unshift(value));
+  // animation(verifyMatrix, confirmMatrix);
+  // //!
+
+  matrixClone = logical(matrixClone, setScore, score);
 
   matrixClone = removeNull(matrixClone);
 
@@ -65,19 +67,15 @@ export const handleRight = (
   setHistory(matrixClone);
 };
 
-export const handleDown = (
-  matrix,
-  setMatrix,
-  setHistory,
-  status,
-  setStatus
-) => {
+export const handleDown = (args) => {
+  const { matrix, score, setMatrix, setHistory, setScore } = args;
+
   let matrixClone = matrix.slice();
   matrixClone = transposed(matrixClone);
 
   matrixClone = removeNull(matrixClone);
 
-  matrixClone = logical(matrixClone, setStatus, status);
+  matrixClone = logical(matrixClone, setScore, score);
 
   matrixClone = removeNull(matrixClone);
 
@@ -133,5 +131,8 @@ const handleOneMore = (matrix, setMatrix) => {
   } while (matrixClone[l][c] !== null);
 
   matrixClone[l][c] = Math.floor(Math.random() * 6) ? 2 : 4;
+  const element = document.querySelector(`.miniBox${l}${c}`);
   setMatrix(matrixClone);
+  element.style.transform = "scale(0.5)";
+  setTimeout(() => (element.style.transform = "scale(1)"), 100);
 };
