@@ -80,7 +80,5 @@ h1 {
   margin-top: 10px;
   width: 355px;
   padding: 20px;
-  transition: all 0.5s;
-  border-radius: 6px;
   z-index: 10;
 }
