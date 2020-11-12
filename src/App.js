@@ -5,7 +5,7 @@ import {
   handleUp,
   handleDown,
   handleRandomValues,
-} from "./handleMotion";
+} from "./gameLogic/handleMotion";
 import { BigBox } from "./components/BigBox";
 import { GameTop } from "./components/GameTop";
 import { GameDown } from "./components/GameDown";

@@ -1,5 +1,5 @@
-import { isWin } from "../isPossible";
-import { isPossible } from "../isPossible";
+import { isWin } from "../gameLogic/isPossible";
+import { isPossible } from "../gameLogic/isPossible";
 
 export function Win(props) {
   const { matrix, restartGame } = props;
