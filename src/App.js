@@ -25,9 +25,10 @@ function App() {
   const [score, setScore] = useState(
     localStorage.getItem("score") ? Number(localStorage.getItem("score")) : 0
   );
+  localStorage.setItem("score", score);
+
   //^ History
   const [history, setHistory] = useState();
-  localStorage.setItem("score", score);
   if (history) localStorage.setItem("history", JSON.stringify(history));
 
   //^ Commands
@@ -38,7 +39,9 @@ function App() {
       setTimeout(() => (arrow.style.background = "#eee4da"), 150);
     }
   }
+
   const args = { matrix, setMatrix, setHistory, setScore };
+
   function up() {
     handleUp(args);
     changeArrow("arrowUP");
@@ -62,7 +65,7 @@ function App() {
     setScore(0);
   };
 
-  //!
+  //! test win and game over
   // function a(matrix) {
   //   let m = matrix.slice();
   //   m[0][0] = 2048;
@@ -103,12 +106,14 @@ function App() {
             <Arrows onUp={up} onLeft={left} onDown={down} onRight={right} />
           </div>
         </div>
+
         {/* <button onClick={() => a(matrix)} className="winLoseB">
           win
         </button>
         <button onClick={() => b(matrix)} className="winLoseB">
           lose
         </button> */}
+
         <GameDown />
       </div>
     </React.Fragment>
@@ -132,4 +137,3 @@ function useKey(key, callback) {
     return () => document.removeEventListener("keypress", handle);
   }, [key]);
 }
-//
