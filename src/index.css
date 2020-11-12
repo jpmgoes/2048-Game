@@ -75,10 +75,3 @@ h1 {
   position: absolute;
   left: 100px;
 }
-/* GameDown */
-.gameDown {
-  margin-top: 10px;
-  width: 355px;
-  padding: 20px;
-  z-index: 10;
-}

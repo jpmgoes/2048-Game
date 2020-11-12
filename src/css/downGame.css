@@ -1,0 +1,16 @@
+.gameDown {
+  margin-top: 10px;
+  width: 355px;
+  padding: 20px;
+  z-index: 10;
+}
+.footBar > a {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  font-size: 30px;
+  margin-top: 40px;
+  color: #8f7a66;
+  font-weight: 800;
+  text-decoration: none;
+}

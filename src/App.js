@@ -21,6 +21,7 @@ function App() {
   const [matrix, setMatrix] = useState(
     lastGame && lastGame[0] ? lastGame : randomMatrix
   );
+
   //^ Score
   const [score, setScore] = useState(
     localStorage.getItem("score") ? Number(localStorage.getItem("score")) : 0
@@ -115,6 +116,11 @@ function App() {
         </button> */}
 
         <GameDown />
+      </div>
+      <div className="footBar">
+        <a href="https://github.com/jpmourag" target="_blank" rel="noreferrer">
+          🕹 MADE BY JPMOURAG
+        </a>
       </div>
     </React.Fragment>
   );
