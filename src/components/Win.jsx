@@ -1,10 +1,5 @@
-import { isWin } from "../isPosible";
-import {
-  isPosibleUp,
-  isPosibleDown,
-  isPosibleLeft,
-  isPosibleRight,
-} from "../isPosible";
+import { isWin } from "../isPossible";
+import { isPossible } from "../isPossible";
 
 export function Win(props) {
   const { matrix, restartGame } = props;
@@ -13,10 +8,10 @@ export function Win(props) {
 
   const isGameOver = (matrix) => {
     if (
-      !isPosibleUp(matrix) &&
-      !isPosibleDown(matrix) &&
-      !isPosibleLeft(matrix) &&
-      !isPosibleRight(matrix)
+      !isPossible(matrix, "v", 0, 1, 0) &&
+      !isPossible(matrix, "v", 3, -1, 0) &&
+      !isPossible(matrix, "h", 0, 0, 1) &&
+      !isPossible(matrix, "h", 3, 0, -1)
     )
       return true;
   };
