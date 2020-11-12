@@ -1,5 +1,5 @@
-import { Buttons } from "./Buttons";
 import { BigBoxTemplate } from "./BigBoxTemplate";
+import { NumDivs } from "./NumDivs";
 import { Win } from "./Win";
 
 export function BigBox(props) {
@@ -9,10 +9,10 @@ export function BigBox(props) {
       <Win matrix={matrix} restartGame={restartGame} />
       <div className="allGameInnerDivs">
         <div className="allNumAndNoNumsDivs">
-          <BigBoxTemplate matrix={matrix} />
+          <NumDivs matrix={matrix} />
         </div>
         <div className="allTemplateDivs">
-          <Buttons matrix={matrix} />
+          <BigBoxTemplate matrix={matrix} />
         </div>
       </div>
     </div>
