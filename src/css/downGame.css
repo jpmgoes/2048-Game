@@ -4,6 +4,9 @@
   padding: 20px;
   z-index: 10;
 }
+.gameDown > .start::selection {
+  background-color: transparent;
+}
 .footBar > a {
   display: grid;
   justify-content: center;

@@ -21,6 +21,7 @@ export function GameTop(props) {
           <strong
             onClick={howToPlay}
             style={{ textDecoration: "underline", cursor: "pointer" }}
+            className="start"
           >
             How to play →
           </strong>

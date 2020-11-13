@@ -14,6 +14,7 @@ export function GameDown() {
       <strong
         onClick={startPlaying}
         style={{ textDecoration: "underline", cursor: "pointer" }}
+        className="start"
       >
         Start playing →
       </strong>

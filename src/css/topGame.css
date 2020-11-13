@@ -3,6 +3,9 @@ h1 {
   height: 50px;
   color: #8f7a66;
 }
+.topText > .start::selection {
+  background-color: transparent;
+}
 /* score */
 .scoreBase {
   display: grid;
