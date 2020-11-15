@@ -1,6 +1,7 @@
 import { Score } from "./Score";
+
 export function GameTop(props) {
-  const { score, history, setScore, restartGame } = props;
+  const { restartGame } = props;
 
   const howToPlay = () => {
     const startPlaying = document.querySelector(".gameDown");
@@ -12,7 +13,7 @@ export function GameTop(props) {
     <>
       <div className="gameTop">
         <h1>2048</h1>
-        <Score score={score} history={history} setScore={setScore} />
+        <Score />
         <button className="restartGame" onClick={restartGame}>
           New Game
         </button>

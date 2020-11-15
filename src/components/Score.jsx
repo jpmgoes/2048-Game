@@ -1,17 +1,25 @@
-export function Score(props) {
-  let { score, history, setScore } = props;
+import React, { useContext } from 'react'
+import { ScoreContext } from "../App";
+
+export function Score() {
+  const { score, history, setScore } = useContext(ScoreContext)
+
   let bestScore = localStorage.getItem("bestScore");
+  
   if (bestScore < score) {
     bestScore = score;
     localStorage.setItem("bestScore", bestScore);
   }
+  
   if (history) {
     setScore(Number(localStorage.getItem("score")));
   }
+
   const style = {
     fontSize: "0.8rem",
     color: "#eee4da",
   };
+
   return (
     <>
       <div className="scoreboard">

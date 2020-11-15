@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, createContext } from "react";
 import {
   handleRight,
   handleLeft,
@@ -11,6 +11,9 @@ import { GameTop } from "./components/GameTop";
 import { GameDown } from "./components/GameDown";
 import { Arrows } from "./components/Arrows";
 import "./index.css";
+
+//^ Context
+export const ScoreContext = createContext();
 
 function App() {
   //^ Handle Matrix
@@ -93,12 +96,9 @@ function App() {
     <React.Fragment>
       <div className="allGame">
         <div className="bigBoxWithArrows">
-          <GameTop
-            score={score}
-            history={history}
-            setScore={setScore}
-            restartGame={() => restartGame(setMatrix, randomMatrix)}
-          />
+          <ScoreContext.Provider value={{ score, history, setScore }}>
+            <GameTop restartGame={() => restartGame(setMatrix, randomMatrix)} />
+          </ScoreContext.Provider>
           <BigBox
             matrix={matrix}
             restartGame={() => restartGame(setMatrix, randomMatrix)}
