@@ -7,6 +7,7 @@ export function Score() {
   let bestScore = localStorage.getItem("bestScore");
   
   if (bestScore < score) {
+    
     bestScore = score;
     localStorage.setItem("bestScore", bestScore);
   }
