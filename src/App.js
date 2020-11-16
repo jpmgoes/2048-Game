@@ -69,21 +69,21 @@ function App() {
     setScore(0);
   };
 
-  //! test win and game over
+  //=> test win and game over - start
   // function a(matrix) {
-  //   let m = matrix.slice();
-  //   m[0][0] = 2048;
-  //   setMatrix(m);
-  // }
-  // function b() {
-  //   setMatrix([
-  //     [2, 4, 8, 16],
-  //     [32, 64, 128, 256],
-  //     [512, 1024, 2, 4],
-  //     [8, 16, 32, 64],
-  //   ]);
-  // }
-  //!
+    //   let m = matrix.slice();
+    //   m[0][0] = 2048;
+    //   setMatrix(m);
+    // }
+    // function b() {
+      //   setMatrix([
+        //     [2, 4, 8, 16],
+        //     [32, 64, 128, 256],
+        //     [512, 1024, 2, 4],
+        //     [8, 16, 32, 64],
+        //   ]);
+        // }
+  //=> test win and game over - end
 
   //^ commands
   useKey("KeyW", up);
@@ -108,12 +108,8 @@ function App() {
           </div>
         </div>
 
-        {/* <button onClick={() => a(matrix)} className="winLoseB">
-          win
-        </button>
-        <button onClick={() => b(matrix)} className="winLoseB">
-          lose
-        </button> */}
+        {/* <button onClick={() => a(matrix)} className="wLB"> win </button>  */}
+        {/* <button onClick={() => b(matrix)} className="wLB"> lose </button> */}
 
         <GameDown />
       </div>
