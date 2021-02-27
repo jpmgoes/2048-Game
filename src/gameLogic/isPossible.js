@@ -20,7 +20,7 @@ export const isPossible = (matrix, isVertical, ...num) => {
   );
 };
 
-// isPossible - Top => isPossible(matrix, "v", 0, 1, 0);
+// isPossible - Up => isPossible(matrix, "v", 0, 1, 0);
 // isPossible - Down => isPossible(matrix, "v", 3, -1, 0);
 // isPossible - Left => isPossible(matrix, "h", 0, 0, 1);
 // isPossible - Right => isPossible(matrix, "h", 3, 0, -1);

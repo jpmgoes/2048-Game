@@ -1,4 +1,6 @@
 import { transposed, removeNull, insertNull, logic } from "./fnToHandleMotion";
+import { isPossible } from "./isPossible";
+
 export const handleUp = (args) => {
   const { matrix, setMatrix, setHistory, setScore } = args;
 
@@ -13,7 +15,7 @@ export const handleUp = (args) => {
   matrixClone = transposed(matrixClone);
 
   setMatrix(matrixClone);
-  handleOneMore(matrixClone, setMatrix);
+  handleOneMore(matrixClone, setMatrix, isPossible(matrix, "v", 0, 1, 0));
   setHistory(matrixClone);
 };
 
@@ -32,7 +34,7 @@ export const handleLeft = (args) => {
   matrixClone = insertNull(matrixClone, (matrix, value) => matrix.push(value));
 
   setMatrix(matrixClone);
-  handleOneMore(matrixClone, setMatrix);
+  handleOneMore(matrixClone, setMatrix, isPossible(matrix, "h", 0, 0, 1));
   setHistory(matrixClone);
 };
 
@@ -50,7 +52,7 @@ export const handleRight = (args) => {
     matrix.unshift(value)
   );
   setMatrix(matrixClone);
-  handleOneMore(matrixClone, setMatrix);
+  handleOneMore(matrixClone, setMatrix, isPossible(matrix, "h", 3, 0, -1));
   setHistory(matrixClone);
 };
 
@@ -70,7 +72,7 @@ export const handleDown = (args) => {
   matrixClone = transposed(matrixClone);
 
   setMatrix(matrixClone);
-  handleOneMore(matrixClone, setMatrix);
+  handleOneMore(matrixClone, setMatrix, isPossible(matrix, "v", 3, -1, 0));
   setHistory(matrixClone);
 };
 
@@ -99,9 +101,11 @@ export const handleRandomValues = () => {
   return matrix;
 };
 
-export const handleOneMore = (matrix, setMatrix) => {
+export const handleOneMore = (matrix, setMatrix, bool) => {
+  if (!bool) {
+    return;
+  }
   const matrixClone = matrix.slice();
-
   let l, c;
 
   const matrixCloneLength = matrixClone
