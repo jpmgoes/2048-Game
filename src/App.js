@@ -114,7 +114,7 @@ function App() {
         <GameDown />
       </div>
       <div className="footBar">
-        <a target="_blank" rel="noreferrer" href="https://github.com/jpmoura">
+        <a target="_blank" rel="noreferrer" href="https://github.com/jpmourag">
           🕹 MADE BY JPMOURAG
         </a>
       </div>
