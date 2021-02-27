@@ -12,11 +12,11 @@ import { GameDown } from "./components/GameDown";
 import { Arrows } from "./components/Arrows";
 import "./index.css";
 
-//^ Context
+//$ Context
 export const ScoreContext = createContext();
 
 function App() {
-  //^ Handle Matrix
+  //$ Handle Matrix
   const randomMatrix = handleRandomValues();
 
   let lastGame = JSON.parse(localStorage.getItem("history"));
@@ -25,17 +25,17 @@ function App() {
     lastGame && lastGame[0] ? lastGame : randomMatrix
   );
 
-  //^ Score
+  //$ Score
   const [score, setScore] = useState(
     localStorage.getItem("score") ? Number(localStorage.getItem("score")) : 0
   );
   localStorage.setItem("score", score);
 
-  //^ History
+  //$ History
   const [history, setHistory] = useState();
   if (history) localStorage.setItem("history", JSON.stringify(history));
 
-  //^ Commands
+  //$ Commands
   function changeArrow(className) {
     const arrow = document.querySelector("." + className);
     if (arrow) {
@@ -71,27 +71,27 @@ function App() {
 
   //=> test win and game over - start
   // function a(matrix) {
-    //   let m = matrix.slice();
-    //   m[0][0] = 2048;
-    //   setMatrix(m);
-    // }
-    // function b() {
-      //   setMatrix([
-        //     [2, 4, 8, 16],
-        //     [32, 64, 128, 256],
-        //     [512, 1024, 2, 4],
-        //     [8, 16, 32, 64],
-        //   ]);
-        // }
+  //   let m = matrix.slice();
+  //   m[0][0] = 2048;
+  //   setMatrix(m);
+  // }
+  // function b() {
+  //   setMatrix([
+  //     [2, 4, 8, 16],
+  //     [32, 64, 128, 256],
+  //     [512, 1024, 2, 4],
+  //     [8, 16, 32, 64],
+  //   ]);
+  // }
   //=> test win and game over - end
 
-  //^ commands
+  //$ Commands
   useKey("KeyW", up);
   useKey("KeyA", left);
   useKey("KeyS", down);
   useKey("KeyD", right);
 
-  //^ Render
+  //$ Render
   return (
     <React.Fragment>
       <div className="allGame">
@@ -114,7 +114,7 @@ function App() {
         <GameDown />
       </div>
       <div className="footBar">
-        <a href="" target="_blank" rel="noreferrer">
+        <a target="_blank" rel="noreferrer" href="https://github.com/jpmourag">
           🕹 MADE BY JPMOURAG
         </a>
       </div>

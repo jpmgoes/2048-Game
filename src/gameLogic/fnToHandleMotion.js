@@ -1,13 +1,8 @@
-export function transposed(matrix) {
-  let t = [];
-  matrix.map((arr, l) => {
-    t.push([]);
-    return arr.map((n, c) => {
-      t[l].push(matrix[c][l]);
-      return n;
-    });
-  });
-  return t;
+export function transposed(array) {
+  const matrixTransposed = array.slice();
+  return matrixTransposed[0].map((_, colIndex) =>
+    matrixTransposed.map((row) => row[colIndex])
+  );
 }
 
 export function removeNull(matrix) {
@@ -18,34 +13,61 @@ export function removeNull(matrix) {
 }
 
 export function insertNull(matrix, callback) {
-  for (let arr of matrix) {
+  const newMatrix = matrix.slice();
+  for (let arr of newMatrix) {
     while (arr.length < 4) {
       callback(arr, null);
     }
   }
-  return matrix;
+  return newMatrix;
 }
 
-export function logical(matrix, setScore) {
-  let newMatrix = [];
-
-  for (let arr of matrix) {
-    const l = matrix.indexOf(arr);
-    newMatrix.push(arr);
-    let count = 0;
-    for (let n of arr) {
-      const c = arr.indexOf(n, count);
-      if (c !== 0) {
-        if (n === newMatrix[l][c - 1] && n !== null) {
-          let value = newMatrix[l][c];
-          newMatrix[l][c - 1] = value * 2;
-          setScore((prevScore) => prevScore + value * 2);
-          newMatrix[l][c] = null;
-          break;
+export function logic(arr, setScore, bool) {
+  const count = {};
+  const setOfArr = new Set(arr);
+  let left = 0;
+  let right = 1;
+  if (bool) {
+    left = 1;
+    right = 0;
+  }
+  for (const num of setOfArr) {
+    if (num === 0) continue;
+    Object.defineProperty(count, `${num}`, {
+      enumerable: true,
+      value: 0,
+      writable: true,
+    });
+  }
+  const arrCopy = arr.slice();
+  for (const key in count) {
+    arrCopy.forEach((n) => {
+      if (n === +key) {
+        count[key] += 1;
+      }
+    });
+  }
+  const arrClone = arrCopy.slice();
+  let bool2 = true;
+  arrCopy.forEach((num, index) => {
+    if (num / 2 >= 1)
+      if (index < 3) {
+        const times = count[`${num}`];
+        let add = 0;
+        if (bool && times === 3 && bool2) {
+          if (arrClone[index + right] === arrClone[index + 2]) {
+            add = 1;
+            bool2 = false;
+          }
+        }
+        const currently = arrClone[index + left];
+        const valueAround = arrClone[index + right];
+        if (valueAround === currently) {
+          arrClone[index + right + add] += currently;
+          setScore((prevScore) => prevScore + currently);
+          arrClone[index + left + add] = 0;
         }
       }
-      count++;
-    }
-  }
-  return newMatrix;
+  });
+  return arrClone;
 }

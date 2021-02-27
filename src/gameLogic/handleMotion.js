@@ -1,23 +1,15 @@
-import {
-  transposed,
-  removeNull,
-  insertNull,
-  logical,
-} from "./fnToHandleMotion";
+import { transposed, removeNull, insertNull, logic } from "./fnToHandleMotion";
 export const handleUp = (args) => {
   const { matrix, setMatrix, setHistory, setScore } = args;
 
   let matrixClone = matrix.slice();
   matrixClone = transposed(matrixClone);
-
   matrixClone = removeNull(matrixClone);
-
-  matrixClone = logical(matrixClone, setScore);
-
+  matrixClone = matrixClone.map((arr) => {
+    return logic(arr, setScore, true);
+  });
   matrixClone = removeNull(matrixClone);
-
-  insertNull(matrixClone, (matrix, value) => matrix.push(value));
-
+  matrixClone = insertNull(matrixClone, (matrix, value) => matrix.push(value));
   matrixClone = transposed(matrixClone);
 
   setMatrix(matrixClone);
@@ -31,11 +23,13 @@ export const handleLeft = (args) => {
   let matrixClone = matrix.slice();
   matrixClone = removeNull(matrixClone);
 
-  matrixClone = logical(matrixClone, setScore);
+  matrixClone = matrixClone.map((arr) => {
+    return logic(arr, setScore, false);
+  });
 
   matrixClone = removeNull(matrixClone);
 
-  insertNull(matrixClone, (matrix, value) => matrix.push(value));
+  matrixClone = insertNull(matrixClone, (matrix, value) => matrix.push(value));
 
   setMatrix(matrixClone);
   handleOneMore(matrixClone, setMatrix);
@@ -48,12 +42,13 @@ export const handleRight = (args) => {
   let matrixClone = matrix.slice();
   matrixClone = removeNull(matrixClone);
 
-  matrixClone = logical(matrixClone, setScore);
-
+  matrixClone = matrixClone.map((arr) => {
+    return logic(arr, setScore, true);
+  });
   matrixClone = removeNull(matrixClone);
-
-  insertNull(matrixClone, (matrix, value) => matrix.unshift(value));
-
+  matrixClone = insertNull(matrixClone, (matrix, value) =>
+    matrix.unshift(value)
+  );
   setMatrix(matrixClone);
   handleOneMore(matrixClone, setMatrix);
   setHistory(matrixClone);
@@ -64,15 +59,14 @@ export const handleDown = (args) => {
 
   let matrixClone = matrix.slice();
   matrixClone = transposed(matrixClone);
-
   matrixClone = removeNull(matrixClone);
-
-  matrixClone = logical(matrixClone, setScore);
-
+  matrixClone = matrixClone.map((arr) => {
+    return logic(arr, setScore, true);
+  });
   matrixClone = removeNull(matrixClone);
-
-  insertNull(matrixClone, (matrix, value) => matrix.unshift(value));
-
+  matrixClone = insertNull(matrixClone, (matrix, value) =>
+    matrix.unshift(value)
+  );
   matrixClone = transposed(matrixClone);
 
   setMatrix(matrixClone);
@@ -105,7 +99,7 @@ export const handleRandomValues = () => {
   return matrix;
 };
 
-const handleOneMore = (matrix, setMatrix) => {
+export const handleOneMore = (matrix, setMatrix) => {
   const matrixClone = matrix.slice();
 
   let l, c;
