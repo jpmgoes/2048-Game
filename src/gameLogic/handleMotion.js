@@ -8,7 +8,7 @@ export const handleUp = (args) => {
   matrixClone = transposed(matrixClone);
   matrixClone = removeNull(matrixClone);
   matrixClone = matrixClone.map((arr) => {
-    return logic(arr, setScore, true);
+    return logic(arr, setScore, false);
   });
   matrixClone = removeNull(matrixClone);
   matrixClone = insertNull(matrixClone, (matrix, value) => matrix.push(value));
