@@ -22,15 +22,10 @@ export function insertNull(matrix, callback) {
   return newMatrix;
 }
 
-export function logic(arr, setScore, bool) {
+function counter(arr) {
   const count = {};
   const setOfArr = new Set(arr);
-  let left = 0;
-  let right = 1;
-  if (bool) {
-    left = 1;
-    right = 0;
-  }
+
   for (const num of setOfArr) {
     if (num === 0) continue;
     Object.defineProperty(count, `${num}`, {
@@ -47,7 +42,19 @@ export function logic(arr, setScore, bool) {
       }
     });
   }
-  const arrClone = arrCopy.slice();
+  return count;
+}
+
+export function logic(arr, setScore, bool) {
+  const count = counter(arr);
+  let left = 0;
+  let right = 1;
+  if (bool) {
+    left = 1;
+    right = 0;
+  }
+  const arrClone = arr.slice();
+  const arrCopy = arr.slice();
   let bool2 = true;
   arrCopy.forEach((num, index) => {
     if (num / 2 >= 1)
